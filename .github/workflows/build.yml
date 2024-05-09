@@ -1,0 +1,115 @@
+name: Build manylinx wheels and deploy
+
+permissions:
+  contents: write
+
+on:
+  push:
+    tags:
+      - v*
+  workflow_dispatch:
+
+jobs:
+  build_wheels:
+    name: Build Wheel
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.7", "3.8", "3.9", "3.10", "3.11"]
+        torch-version: ["1.12.1", "1.13.1", "2.0.1", "2.1.2", "2.2.2", "2.3.0"]
+        cuda-version: ["11.8.0", "12.1.1"]
+        exclude:
+          # see https://github.com/pytorch/pytorch/blob/main/RELEASE.md#release-compatibility-matrix
+          # Pytorch <= 1.12 does not support Python 3.11
+          - torch-version: "1.12.1"
+            python-version: "3.11"
+          # Pytorch >= 2.2 support Python 3.12
+          - torch-version: "1.12.1"
+            python-version: "3.12"
+          - torch-version: "1.13.1"
+            python-version: "3.12"
+          - torch-version: "2.0.1"
+            python-version: "3.12"
+          - torch-version: "2.1.2"
+            python-version: "3.12"
+          # Pytorch >= 2.0 only supports Python >= 3.8
+          - torch-version: "2.0.1"
+            python-version: "3.7"
+          - torch-version: "2.1.2"
+            python-version: "3.7"
+          - torch-version: "2.2.2"
+            python-version: "3.7"
+          - torch-version: "2.3.0"
+            python-version: "3.7"
+          # Pytorch <= 2.0 only supports CUDA <= 11.8
+          - torch-version: "1.12.1"
+            cuda-version: "12.1.1"
+          - torch-version: "1.13.1"
+            cuda-version: "12.1.1"
+          - torch-version: "2.0.1"
+            cuda-version: "12.1.1"
+
+    steps:
+      - name: Checkout Deepspeed
+        uses: actions/checkout@v4
+        with:
+          repository: NVIDIA/TransformerEngine
+          ref: v1.5
+
+      - name: Checkout utils
+        uses: actions/checkout@v4
+        with:
+          path: build_scripts
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Set CUDA and PyTorch versions ${{ matrix.torch-version }}+cu${{ matrix.cuda-version }}
+        run: |
+          echo "CI_CUDA_VERSION=$(echo ${{ matrix.cuda-version }})" >> $GITHUB_ENV
+          echo "CI_TORCH_VERSION=$(echo ${{ matrix.torch-version }})" >> $GITHUB_ENV
+          echo "CI_PYTHON_VERSION=$(echo ${{ matrix.python-version }})" >> $GITHUB_ENV
+          echo "MATRIX_CUDA_VERSION=$(echo ${{ matrix.cuda-version }} | awk -F \. {'print $1 $2'})" >> $GITHUB_ENV
+          echo "MATRIX_TORCH_VERSION=$(echo ${{ matrix.torch-version }} | awk -F \. {'print $1 "." $2'})" >> $GITHUB_ENV
+          echo "MATRIX_PYTHON_VERSION=$(echo ${{ matrix.python-version }} | awk -F \. {'print $1 $2'})" >> $GITHUB_ENV
+
+      - name: Install cibuildwheel
+        run: |
+          echo "MANYLINUX_CUDA_VERSION=$(python -c "from os import environ as env; print({'118': '11.8', '121': '12.3'}[env['MATRIX_CUDA_VERSION']])")" >> $GITHUB_ENV
+          python3 -m pip install --upgrade pip
+          python3 -m pip install cibuildwheel
+
+      - name: Build wheels for Pytorch ${{ matrix.torch-version }}+cu${{ matrix.cuda-version }}
+        run: |
+          python3 -m cibuildwheel --output-dir dist
+        env:
+          CIBW_BUILD: cp${{ env.MATRIX_PYTHON_VERSION }}-*64
+          CIBW_MANYLINUX_X86_64_IMAGE: sameli/manylinux2014_x86_64_cuda_${{ env.MANYLINUX_CUDA_VERSION }}
+          CIBW_BEFORE_BUILD_LINUX: >
+            (yum install -y libaio-devel libffi-devel || apt-get install -y libaio-dev libffi-devel || apk add --update --no-cache libaio-devel libffi-devel || true) &&
+            (yum install -y libc6 || apt-get install -y libc6 || apk add --update --no-cache libc6 || true) &&
+            bash build_scripts/prepare_for_build.sh
+          CIBW_ENVIRONMENT: CFLAGS="-I/usr/include" AUDITWHEEL_PLAT="manylinux_2_24_$(uname -m)" MATRIX_CUDA_VERSION=${{ env.MATRIX_CUDA_VERSION }} MATRIX_TORCH_VERSION=${{ env.MATRIX_TORCH_VERSION }} MATRIX_PYTHON_VERSION=${{ env.MATRIX_PYTHON_VERSION }} CI_CUDA_VERSION=${{ env.CI_CUDA_VERSION }} CI_TORCH_VERSION=${{ env.CI_TORCH_VERSION }} CI_PYTHON_VERSION=${{ env.CI_PYTHON_VERSION }}
+          CIBW_SKIP: "*musllinux*"
+          CIBW_REPAIR_WHEEL_COMMAND_LINUX: "auditwheel repair -w /tmp/cibuildwheel/repaired_wheel {wheel} --exclude libc10.so --exclude libc10_cuda.so --exclude libtorch.so --exclude libtorch_python.so --exclude libtorch_cpu.so --exclude libtorch_cuda.so --exclude libtorch_cuda_cpp.so --exclude libtorch_cuda_cu.so"
+
+      - name: Log Built Wheels
+        run: |
+          wheel_name=$(ls dist/*whl | xargs -n 1 basename)
+          echo "wheel_name=${wheel_name}" >> $GITHUB_ENV
+          ls dist
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{env.wheel_name}}
+          path: dist/${{env.wheel_name}}
+
+      - name: Upload Release Asset
+        uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: |
+            ./dist/${{env.wheel_name}}
