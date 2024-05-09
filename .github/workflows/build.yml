@@ -77,6 +77,7 @@ jobs:
           echo "MATRIX_TORCH_VERSION=$(echo ${{ matrix.torch-version }} | awk -F \. {'print $1 "." $2'})" >> $GITHUB_ENV
           echo "MATRIX_PYTHON_VERSION=$(echo ${{ matrix.python-version }} | awk -F \. {'print $1 $2'})" >> $GITHUB_ENV
           echo "CUDNN_CUDA_VERSION=$(echo ${{ matrix.cuda-version }} | awk -F \. {'print $1'})" >> $GITHUB_ENV
+          echo "NVTX_CUDA_VERSION=$(echo ${{ matrix.cuda-version }} | awk -F \. {'print $1"-"$2'})" >> $GITHUB_ENV
 
       - name: Install cibuildwheel
         run: |
@@ -92,6 +93,7 @@ jobs:
           CIBW_MANYLINUX_X86_64_IMAGE: sameli/manylinux2014_x86_64_cuda_${{ env.MANYLINUX_CUDA_VERSION }}
           CIBW_BEFORE_BUILD_LINUX: >
             (yum install -y cudnn9-cuda-${{ env.CUDNN_CUDA_VERSION }} || true) &&
+            (yum install -y cuda-nvtx-${{ env.NVTX_CUDA_VERSION }} || true) &&
             bash build_scripts/prepare_for_build.sh &&
             cp build_scripts/setup.py setup.py
           CIBW_ENVIRONMENT: NVTE_NO_LOCAL_VERSION=1 AUDITWHEEL_PLAT="manylinux_2_24_$(uname -m)" MATRIX_CUDA_VERSION=${{ env.MATRIX_CUDA_VERSION }} MATRIX_TORCH_VERSION=${{ env.MATRIX_TORCH_VERSION }} MATRIX_PYTHON_VERSION=${{ env.MATRIX_PYTHON_VERSION }} CI_CUDA_VERSION=${{ env.CI_CUDA_VERSION }} CI_TORCH_VERSION=${{ env.CI_TORCH_VERSION }} CI_PYTHON_VERSION=${{ env.CI_PYTHON_VERSION }}
