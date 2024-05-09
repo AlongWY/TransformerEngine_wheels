@@ -79,9 +79,7 @@ jobs:
 
       - name: Install cibuildwheel
         run: |
-          echo "MANYLINUX_CUDA_VERSION=$(python -c "from os import environ as env; print({'118': '11.8', '121': '12.3'}[env['MATRIX_CUDA_VERSION']])")" >> $GITHUB_ENV
-          echo "MANYLINUX_NVTX_CUDA_VERSION=$(python -c "from os import environ as env; print({'118': '11-8', '121': '12-3'}[env['MATRIX_CUDA_VERSION']])")" >> $GITHUB_ENV
-          echo "MANYLINUX_CUDNN_CUDA_VERSION=$(echo ${{ matrix.cuda-version }} | awk -F \. {'print $1'})" >> $GITHUB_ENV
+          echo "MANYLINUX_CUDA_VERSION=$(python -c "from os import environ as env; print({'118': '118', '121': '124'}[env['MATRIX_CUDA_VERSION']])")" >> $GITHUB_ENV
           python3 -m pip install --upgrade pip
           python3 -m pip install cibuildwheel
 
@@ -90,9 +88,8 @@ jobs:
           python3 -m cibuildwheel --output-dir dist
         env:
           CIBW_BUILD: cp${{ env.MATRIX_PYTHON_VERSION }}-*64
-          CIBW_MANYLINUX_X86_64_IMAGE: sameli/manylinux2014_x86_64_cuda_${{ env.MANYLINUX_CUDA_VERSION }}
+          CIBW_MANYLINUX_X86_64_IMAGE: pytorch/manylinux-cuda${{ env.MANYLINUX_CUDA_VERSION }}
           CIBW_BEFORE_BUILD_LINUX: >
-            (yum install -y cudnn9-cuda-${{ env.MANYLINUX_CUDNN_CUDA_VERSION }} cuda-nvtx-${{ env.MANYLINUX_NVTX_CUDA_VERSION }} || true) &&
             bash build_scripts/prepare_for_build.sh &&
             cp build_scripts/setup.py setup.py
           CIBW_ENVIRONMENT: MAX_JOBS=1 NVTE_NO_LOCAL_VERSION=1 AUDITWHEEL_PLAT="manylinux_2_24_$(uname -m)" MATRIX_CUDA_VERSION=${{ env.MATRIX_CUDA_VERSION }} MATRIX_TORCH_VERSION=${{ env.MATRIX_TORCH_VERSION }} MATRIX_PYTHON_VERSION=${{ env.MATRIX_PYTHON_VERSION }} CI_CUDA_VERSION=${{ env.CI_CUDA_VERSION }} CI_TORCH_VERSION=${{ env.CI_TORCH_VERSION }} CI_PYTHON_VERSION=${{ env.CI_PYTHON_VERSION }}

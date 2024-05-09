@@ -9,7 +9,9 @@ export TORCH_CUDA_VERSION=$(python -c "from os import environ as env; \
     maxv = {'1.12': 116, '1.13': 117, '2.0': 118, '2.1': 121, '2.2': 121, '2.3': 121}[env['MATRIX_TORCH_VERSION']]; \
     print(max(min(int(env['MATRIX_CUDA_VERSION']), maxv), minv))" \
 )
+
 python --version
+gcc --version
 pip --version
 which python
 which pip
