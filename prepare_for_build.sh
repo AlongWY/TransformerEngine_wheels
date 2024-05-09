@@ -21,7 +21,5 @@ which pip
 echo "install torch==${CI_TORCH_VERSION}+cu${TORCH_CUDA_VERSION}"
 pip install --no-cache-dir torch==${CI_TORCH_VERSION} --index-url https://download.pytorch.org/whl/cu${TORCH_CUDA_VERSION}
 
-echo "install flash_attn==2.4.2+${CI_TORCH_VERSION}+cu${TORCH_CUDA_VERSION}"
-pip install --no-cache-dir https://github.com/Dao-AILab/flash-attention/releases/download/v2.4.2/flash_attn-2.4.2+cu${TORCH_CUDA_VERSION}torch${CI_TORCH_VERSION}cxx11abiFALSE-${WHEEL_PYTHON_VERSION}-linux_x86_64.whl
-
 echo "$(cat VERSION)+cu${TORCH_CUDA_VERSION}torch${CI_TORCH_VERSION}" > VERSION
+echo "VERSION=$(cat VERSION)"
