@@ -51,7 +51,7 @@ jobs:
             cuda-version: "12.1.1"
 
     steps:
-      - name: Checkout Deepspeed
+      - name: Checkout TransformerEngine
         uses: actions/checkout@v4
         with:
           repository: NVIDIA/TransformerEngine
