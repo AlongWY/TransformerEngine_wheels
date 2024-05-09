@@ -90,9 +90,7 @@ jobs:
           CIBW_BUILD: cp${{ env.MATRIX_PYTHON_VERSION }}-*64
           CIBW_MANYLINUX_X86_64_IMAGE: sameli/manylinux2014_x86_64_cuda_${{ env.MANYLINUX_CUDA_VERSION }}
           CIBW_BEFORE_BUILD_LINUX: >
-            (yum install -y libaio-devel libffi-devel || apt-get install -y libaio-dev libffi-devel || apk add --update --no-cache libaio-devel libffi-devel || true) &&
-            (yum install -y libc6 || apt-get install -y libc6 || apk add --update --no-cache libc6 || true) &&
-            (dnf -y install --allowerasing cudnn9-cuda-${{ env.CUDNN_CUDA_VERSION }}) &&
+            (yum install -y cudnn9-cuda-${{ env.CUDNN_CUDA_VERSION }} || true) &&
             bash build_scripts/prepare_for_build.sh &&
             cp build_scripts/setup.py setup.py
           CIBW_ENVIRONMENT: NVTE_NO_LOCAL_VERSION=1 AUDITWHEEL_PLAT="manylinux_2_24_$(uname -m)" MATRIX_CUDA_VERSION=${{ env.MATRIX_CUDA_VERSION }} MATRIX_TORCH_VERSION=${{ env.MATRIX_TORCH_VERSION }} MATRIX_PYTHON_VERSION=${{ env.MATRIX_PYTHON_VERSION }} CI_CUDA_VERSION=${{ env.CI_CUDA_VERSION }} CI_TORCH_VERSION=${{ env.CI_TORCH_VERSION }} CI_PYTHON_VERSION=${{ env.CI_PYTHON_VERSION }}
