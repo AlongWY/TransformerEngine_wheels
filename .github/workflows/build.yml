@@ -17,7 +17,7 @@ jobs:
       fail-fast: false
       matrix:
         python-version: ["3.8", "3.9", "3.10", "3.11"]
-        torch-version: ["2.0.1", "2.1.2", "2.2.2", "2.3.0"]
+        torch-version: ["2.2.2", "2.3.0"]
         cuda-version: ["11.8.0", "12.1.1"]
         exclude:
           # see https://github.com/pytorch/pytorch/blob/main/RELEASE.md#release-compatibility-matrix
@@ -72,7 +72,7 @@ jobs:
             (yum install -y cudnn9-cuda-${{ env.MANYLINUX_CUDNN_CUDA_VERSION }} cuda-nvtx-${{ env.MANYLINUX_NVTX_CUDA_VERSION }} || true) &&
             bash build_scripts/prepare_for_build.sh &&
             cp build_scripts/setup.py setup.py
-          CIBW_ENVIRONMENT: MAX_JOBS=1 NVTE_NO_LOCAL_VERSION=1 AUDITWHEEL_PLAT="manylinux_2_24_$(uname -m)" MATRIX_CUDA_VERSION=${{ env.MATRIX_CUDA_VERSION }} MATRIX_TORCH_VERSION=${{ env.MATRIX_TORCH_VERSION }} MATRIX_PYTHON_VERSION=${{ env.MATRIX_PYTHON_VERSION }} CI_CUDA_VERSION=${{ env.CI_CUDA_VERSION }} CI_TORCH_VERSION=${{ env.CI_TORCH_VERSION }} CI_PYTHON_VERSION=${{ env.CI_PYTHON_VERSION }}
+          CIBW_ENVIRONMENT: NVTE_NO_LOCAL_VERSION=1 AUDITWHEEL_PLAT="manylinux_2_24_$(uname -m)" MATRIX_CUDA_VERSION=${{ env.MATRIX_CUDA_VERSION }} MATRIX_TORCH_VERSION=${{ env.MATRIX_TORCH_VERSION }} MATRIX_PYTHON_VERSION=${{ env.MATRIX_PYTHON_VERSION }} CI_CUDA_VERSION=${{ env.CI_CUDA_VERSION }} CI_TORCH_VERSION=${{ env.CI_TORCH_VERSION }} CI_PYTHON_VERSION=${{ env.CI_PYTHON_VERSION }}
           CIBW_SKIP: "*musllinux*"
           CIBW_REPAIR_WHEEL_COMMAND_LINUX: "auditwheel repair -w /tmp/cibuildwheel/repaired_wheel {wheel} --exclude libc10.so --exclude libc10_cuda.so --exclude libtorch.so --exclude libtorch_python.so --exclude libtorch_cpu.so --exclude libtorch_cuda.so --exclude libtorch_cuda_cpp.so --exclude libtorch_cuda_cu.so"
 
