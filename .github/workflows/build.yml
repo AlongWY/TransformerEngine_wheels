@@ -16,39 +16,16 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ["3.7", "3.8", "3.9", "3.10", "3.11"]
-        torch-version: ["1.12.1", "1.13.1", "2.0.1", "2.1.2", "2.2.2", "2.3.0"]
+        python-version: ["3.8", "3.9", "3.10", "3.11"]
+        torch-version: ["2.0.1", "2.1.2", "2.2.2", "2.3.0"]
         cuda-version: ["11.8.0", "12.1.1"]
         exclude:
           # see https://github.com/pytorch/pytorch/blob/main/RELEASE.md#release-compatibility-matrix
-          # Pytorch <= 1.12 does not support Python 3.11
-          - torch-version: "1.12.1"
-            python-version: "3.11"
           # Pytorch >= 2.2 support Python 3.12
-          - torch-version: "1.12.1"
-            python-version: "3.12"
-          - torch-version: "1.13.1"
-            python-version: "3.12"
           - torch-version: "2.0.1"
             python-version: "3.12"
           - torch-version: "2.1.2"
             python-version: "3.12"
-          # Pytorch >= 2.0 only supports Python >= 3.8
-          - torch-version: "2.0.1"
-            python-version: "3.7"
-          - torch-version: "2.1.2"
-            python-version: "3.7"
-          - torch-version: "2.2.2"
-            python-version: "3.7"
-          - torch-version: "2.3.0"
-            python-version: "3.7"
-          # Pytorch <= 2.0 only supports CUDA <= 11.8
-          - torch-version: "1.12.1"
-            cuda-version: "12.1.1"
-          - torch-version: "1.13.1"
-            cuda-version: "12.1.1"
-          - torch-version: "2.0.1"
-            cuda-version: "12.1.1"
 
     steps:
       - name: Checkout TransformerEngine
