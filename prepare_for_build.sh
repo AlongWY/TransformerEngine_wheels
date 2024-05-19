@@ -10,6 +10,11 @@ export TORCH_CUDA_VERSION=$(python -c "from os import environ as env; \
     print(max(min(int(env['MATRIX_CUDA_VERSION']), maxv), minv))" \
 )
 
+export WHEEL_PYTHON_VERSION=$(python -c "from os import environ as env; \
+    version = {'37': 'cp37-cp37m', '38': 'cp38-cp38', '39': 'cp39-cp39', '310': 'cp310-cp310', '311': 'cp311-cp311'}[env['MATRIX_PYTHON_VERSION']]; \
+    print(version)" \
+)
+
 python --version
 gcc --version
 pip --version
