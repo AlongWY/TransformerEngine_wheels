@@ -1,5 +1,5 @@
 pip install setuptools==68.0.0 wheel auditwheel-symbols
-pip install ninja cmake numpy<2.0.0
+pip install ninja cmake "numpy<2.0.0"
 # We want to figure out the CUDA version to download pytorch
 # e.g. we can have system CUDA version being 11.7 but if torch==1.12 then we need to download the wheel from cu116
 # see https://github.com/pytorch/pytorch/blob/main/RELEASE.md#release-compatibility-matrix
