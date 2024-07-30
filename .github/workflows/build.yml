@@ -72,8 +72,8 @@ jobs:
 
       - name: Install cibuildwheel
         run: |
-          echo "MANYLINUX_CUDA_VERSION=$(python -c "from os import environ as env; print({'118': '11.8', '121': '12.3'}[env['MATRIX_CUDA_VERSION']])")" >> $GITHUB_ENV
-          echo "MANYLINUX_NVTX_CUDA_VERSION=$(python -c "from os import environ as env; print({'118': '11-8', '121': '12-3'}[env['MATRIX_CUDA_VERSION']])")" >> $GITHUB_ENV
+          echo "MANYLINUX_CUDA_VERSION=$(python -c "from os import environ as env; print({'118': '11.8', '121': '12.1', '124': '12.4'}[env['MATRIX_CUDA_VERSION']])")" >> $GITHUB_ENV
+          echo "MANYLINUX_NVTX_CUDA_VERSION=$(python -c "from os import environ as env; print({'118': '11-8', '121': '12-1', '124': '12-4'}[env['MATRIX_CUDA_VERSION']])")" >> $GITHUB_ENV
           echo "MANYLINUX_CUDNN_CUDA_VERSION=$(echo ${{ matrix.cuda-version }} | awk -F \. {'print $1'})" >> $GITHUB_ENV
           python3 -m pip install --upgrade pip
           python3 -m pip install cibuildwheel
