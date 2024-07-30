@@ -87,8 +87,7 @@ jobs:
           CIBW_BEFORE_BUILD_LINUX: >
             (yum install -y cudnn9-cuda-${{ env.MANYLINUX_CUDNN_CUDA_VERSION }} cuda-nvtx-${{ env.MANYLINUX_NVTX_CUDA_VERSION }} || true) &&
             bash build_scripts/prepare_for_build.sh &&
-            sed -i 's/--threads", "4"/--threads", "1"/g' setup.py &&
-            sed -i 's/--threads 4/--threads 1/g' transformer_engine/CMakeLists.txt
+            sed -i 's/--threads", "4"/--threads", "1"/g' build_tools/pytorch.py
           CIBW_ENVIRONMENT: CUDA_HOME="/usr/local/cuda-${{ env.MANYLINUX_CUDA_VERSION }}" CFLAGS="-I/usr/include" LDFLAGS="-L/usr/lib" NVTE_NO_LOCAL_VERSION=1 AUDITWHEEL_PLAT="manylinux_2_24_$(uname -m)" MATRIX_CUDA_VERSION=${{ env.MATRIX_CUDA_VERSION }} MATRIX_TORCH_VERSION=${{ env.MATRIX_TORCH_VERSION }} MATRIX_PYTHON_VERSION=${{ env.MATRIX_PYTHON_VERSION }} CI_CUDA_VERSION=${{ env.CI_CUDA_VERSION }} CI_TORCH_VERSION=${{ env.CI_TORCH_VERSION }} CI_PYTHON_VERSION=${{ env.CI_PYTHON_VERSION }}
           CIBW_SKIP: "*musllinux*"
           CIBW_REPAIR_WHEEL_COMMAND_LINUX: "auditwheel repair -w /tmp/cibuildwheel/repaired_wheel {wheel} --exclude libc10.so --exclude libc10_cuda.so --exclude libtorch.so --exclude libtorch_python.so --exclude libtorch_cpu.so --exclude libtorch_cuda.so --exclude libtorch_cuda_cpp.so --exclude libtorch_cuda_cu.so --exclude libcufile.so.0 --exclude libcufile.so --exclude libcudart.so.12 --exclude libcudart.so.11.0 --exclude libcudart.so.11 --exclude libnccl.so --exclude libnccl.so.1 --exclude libnccl.so.2 --exclude libcudart.so.11 --exclude libcudart.so.12 --exclude libcudart.so.11.0 --exclude libcudart.so.12.0 --exclude libcurand.so.10"
