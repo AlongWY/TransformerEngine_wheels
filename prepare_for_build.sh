@@ -1,5 +1,5 @@
 pip install setuptools==68.0.0 wheel auditwheel-symbols
-pip install ninja cmake numpy
+pip install ninja cmake numpy<2.0.0
 # We want to figure out the CUDA version to download pytorch
 # e.g. we can have system CUDA version being 11.7 but if torch==1.12 then we need to download the wheel from cu116
 # see https://github.com/pytorch/pytorch/blob/main/RELEASE.md#release-compatibility-matrix
@@ -24,7 +24,7 @@ which pip
 echo "install torch==${CI_TORCH_VERSION}+cu${TORCH_CUDA_VERSION}"
 pip install --no-cache-dir torch==${CI_TORCH_VERSION} --index-url https://download.pytorch.org/whl/cu${TORCH_CUDA_VERSION}
 
-echo "install flash_attn==2.5.8+${CI_TORCH_VERSION}+cu${TORCH_CUDA_VERSION}"
+echo "install flash_attn==2.6.3+${CI_TORCH_VERSION}+cu${TORCH_CUDA_VERSION}"
 pip install --no-cache-dir https://github.com/Dao-AILab/flash-attention/releases/download/v2.6.3/flash_attn-2.6.3+cu${TORCH_CUDA_VERSION}torch${MATRIX_TORCH_VERSION}cxx11abiFALSE-${WHEEL_PYTHON_VERSION}-linux_x86_64.whl
 
 echo "$(cat VERSION)+cu${TORCH_CUDA_VERSION}torch${CI_TORCH_VERSION}" > VERSION
