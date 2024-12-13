@@ -52,7 +52,7 @@ jobs:
         with:
           repository: NVIDIA/TransformerEngine
           submodules: recursive
-          ref: v1.12
+          ref: v1.13
 
       - name: Checkout utils
         uses: actions/checkout@v4
