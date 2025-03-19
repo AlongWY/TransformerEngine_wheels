@@ -106,7 +106,7 @@ jobs:
           - torch-version: "2.6.0"
             python-version: "3.9"
             cuda-version: "12.6.0"
-            cxx11abi: FALSE
+            cxx11abi: TRUE
           - torch-version: "2.6.0"
             python-version: "3.10"
             cuda-version: "12.4.0"
@@ -114,7 +114,7 @@ jobs:
           - torch-version: "2.6.0"
             python-version: "3.10"
             cuda-version: "12.6.0"
-            cxx11abi: FALSE
+            cxx11abi: TRUE
           - torch-version: "2.6.0"
             python-version: "3.11"
             cuda-version: "12.4.0"
@@ -122,7 +122,7 @@ jobs:
           - torch-version: "2.6.0"
             python-version: "3.11"
             cuda-version: "12.6.0"
-            cxx11abi: FALSE
+            cxx11abi: TRUE
           - torch-version: "2.6.0"
             python-version: "3.12"
             cuda-version: "12.4.0"
@@ -130,7 +130,7 @@ jobs:
           - torch-version: "2.6.0"
             python-version: "3.12"
             cuda-version: "12.6.0"
-            cxx11abi: FALSE
+            cxx11abi: TRUE
 
     steps:
       - name: Free Disk Space (Ubuntu)
