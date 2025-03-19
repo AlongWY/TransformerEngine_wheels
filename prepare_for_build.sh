@@ -20,5 +20,5 @@ pip install --no-cache-dir torch==${CI_TORCH_VERSION} --index-url https://downlo
 
 cp build_scripts/setup.py setup.py
 
-echo "$(cat build_tools/VERSION.txt)+cu${TORCH_CUDA_VERSION}torch${CI_TORCH_VERSION}cxxabi${CXX11_ABI}" > build_tools/VERSION.txt
+echo "$(cat build_tools/VERSION.txt)+cu${TORCH_CUDA_VERSION}torch${CI_TORCH_VERSION}cxxabi${CXX11_ABI^^}" > build_tools/VERSION.txt
 echo "VERSION=$(cat build_tools/VERSION.txt)"
