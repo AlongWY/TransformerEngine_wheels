@@ -16,7 +16,6 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        cxx11abi: [ TRUE, FALSE ]
         include:
           # see https://github.com/pytorch/pytorch/blob/main/RELEASE.md#release-compatibility-matrix
           # Pytorch >= 2.2 support Python 3.12
