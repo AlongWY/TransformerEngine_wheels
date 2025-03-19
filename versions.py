@@ -17,14 +17,16 @@ pairs = []
 for torch_version, pycu in versions.items():
     for python_version in pycu["python"]:
         python_version = f"3.{python_version}"
-        for cuda_version, cxx11abi in pycu["cuda"]:
+        for cuda_version in pycu["cuda"]:
             cuda_version = cuda_version_mapping[cuda_version]
-            pair = (torch_version, python_version, cuda_version)
-            if pair not in pairs_set:
-                pairs.append(pair)
-                pairs_set.add(pair)
+            for cxx11abi in [True, False]:
+                pair = (torch_version, python_version, cuda_version, str(cxx11abi).upper())
+                if pair not in pairs_set:
+                    pairs.append(pair)
+                    pairs_set.add(pair)
 
 for torch_version, python_version, cuda_version, cxx11abi in pairs:
     print(f"- torch-version: \"{torch_version}\"")
     print(f"  python-version: \"{python_version}\"")
     print(f"  cuda-version: \"{cuda_version}\"")
+    print(f"  cxx11abi: {cxx11abi}")
