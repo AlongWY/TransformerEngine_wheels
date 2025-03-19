@@ -33,7 +33,7 @@ current_file_path = Path(__file__).parent.resolve()
 from setuptools.command.build_ext import build_ext as BuildExtension
 
 os.environ["NVTE_PROJECT_BUILDING"] = "1"
-CXX11_ABI = os.getenv("CXX11_ABI", "FALSE") == "TRUE"
+CXX11_ABI = os.getenv("CXX11_ABI", "FALSE").upper() == "TRUE"
 
 if "pytorch" in frameworks:
     from torch.utils.cpp_extension import BuildExtension
