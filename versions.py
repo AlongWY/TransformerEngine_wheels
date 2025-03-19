@@ -1,9 +1,9 @@
 versions = {
     "2.2.2": {"python": [9, 10, 11], "cuda": [121], "CXX": [False, False]},
     "2.3.1": {"python": [9, 10, 11], "cuda": [121], "CXX": [False, False]},
-    "2.4.1": {"python": [9, 10, 11], "cuda": [121, 124], "CXX": [False, False, False]},
-    "2.5.1": {"python": [9, 10, 11, 12], "cuda": [121, 124], "CXX": [False, False, False]},
-    "2.6.0": {"python": [9, 10, 11, 12], "cuda": [124, 126], "CXX": [False, False, True]},
+    "2.4.1": {"python": [9, 10, 11], "cuda": [121, 124], "CXX": [False, False]},
+    "2.5.1": {"python": [9, 10, 11, 12], "cuda": [121, 124], "CXX": [False, False]},
+    "2.6.0": {"python": [9, 10, 11, 12], "cuda": [124, 126], "CXX": [False, True]},
 }
 
 cuda_version_mapping = {
