@@ -18,5 +18,7 @@ which pip
 echo "install torch==${CI_TORCH_VERSION}+cu${TORCH_CUDA_VERSION}"
 pip install --no-cache-dir torch==${CI_TORCH_VERSION} --index-url https://download.pytorch.org/whl/cu${TORCH_CUDA_VERSION}
 
+cp build_scripts/setup.py setup.py
+
 echo "$(cat build_tools/VERSION.txt)+cu${TORCH_CUDA_VERSION}torch${CI_TORCH_VERSION}cxxabi${CXX11_ABI}" > build_tools/VERSION.txt
 echo "VERSION=$(cat build_tools/VERSION.txt)"
