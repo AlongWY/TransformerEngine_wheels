@@ -152,6 +152,7 @@ if __name__ == "__main__":
             if "pytorch" in frameworks:
                 from build_tools.pytorch import setup_pytorch_extension
                 if CXX11_ABI:
+                    import torch
                     torch._C._GLIBCXX_USE_CXX11_ABI = True
                 ext_modules.append(
                     setup_pytorch_extension(
