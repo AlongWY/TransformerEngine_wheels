@@ -22,227 +22,111 @@ jobs:
           - torch-version: "2.2.2"
             python-version: "3.9"
             cuda-version: "12.1.1"
-            cxx11abi: TRUE
-          - torch-version: "2.2.2"
-            python-version: "3.9"
-            cuda-version: "12.1.1"
-            cxx11abi: FALSE
           - torch-version: "2.2.2"
             python-version: "3.10"
             cuda-version: "12.1.1"
-            cxx11abi: TRUE
-          - torch-version: "2.2.2"
-            python-version: "3.10"
-            cuda-version: "12.1.1"
-            cxx11abi: FALSE
           - torch-version: "2.2.2"
             python-version: "3.11"
             cuda-version: "12.1.1"
-            cxx11abi: TRUE
-          - torch-version: "2.2.2"
-            python-version: "3.11"
-            cuda-version: "12.1.1"
-            cxx11abi: FALSE
           - torch-version: "2.3.1"
             python-version: "3.9"
             cuda-version: "12.1.1"
-            cxx11abi: TRUE
-          - torch-version: "2.3.1"
-            python-version: "3.9"
-            cuda-version: "12.1.1"
-            cxx11abi: FALSE
           - torch-version: "2.3.1"
             python-version: "3.10"
             cuda-version: "12.1.1"
-            cxx11abi: TRUE
-          - torch-version: "2.3.1"
-            python-version: "3.10"
-            cuda-version: "12.1.1"
-            cxx11abi: FALSE
           - torch-version: "2.3.1"
             python-version: "3.11"
             cuda-version: "12.1.1"
-            cxx11abi: TRUE
-          - torch-version: "2.3.1"
-            python-version: "3.11"
-            cuda-version: "12.1.1"
-            cxx11abi: FALSE
           - torch-version: "2.4.1"
             python-version: "3.9"
             cuda-version: "12.1.1"
-            cxx11abi: TRUE
-          - torch-version: "2.4.1"
-            python-version: "3.9"
-            cuda-version: "12.1.1"
-            cxx11abi: FALSE
           - torch-version: "2.4.1"
             python-version: "3.9"
             cuda-version: "12.4.0"
-            cxx11abi: TRUE
-          - torch-version: "2.4.1"
-            python-version: "3.9"
-            cuda-version: "12.4.0"
-            cxx11abi: FALSE
           - torch-version: "2.4.1"
             python-version: "3.10"
             cuda-version: "12.1.1"
-            cxx11abi: TRUE
-          - torch-version: "2.4.1"
-            python-version: "3.10"
-            cuda-version: "12.1.1"
-            cxx11abi: FALSE
           - torch-version: "2.4.1"
             python-version: "3.10"
             cuda-version: "12.4.0"
-            cxx11abi: TRUE
-          - torch-version: "2.4.1"
-            python-version: "3.10"
-            cuda-version: "12.4.0"
-            cxx11abi: FALSE
           - torch-version: "2.4.1"
             python-version: "3.11"
             cuda-version: "12.1.1"
-            cxx11abi: TRUE
-          - torch-version: "2.4.1"
-            python-version: "3.11"
-            cuda-version: "12.1.1"
-            cxx11abi: FALSE
           - torch-version: "2.4.1"
             python-version: "3.11"
             cuda-version: "12.4.0"
-            cxx11abi: TRUE
-          - torch-version: "2.4.1"
-            python-version: "3.11"
-            cuda-version: "12.4.0"
-            cxx11abi: FALSE
           - torch-version: "2.5.1"
             python-version: "3.9"
             cuda-version: "12.1.1"
-            cxx11abi: TRUE
-          - torch-version: "2.5.1"
-            python-version: "3.9"
-            cuda-version: "12.1.1"
-            cxx11abi: FALSE
           - torch-version: "2.5.1"
             python-version: "3.9"
             cuda-version: "12.4.0"
-            cxx11abi: TRUE
-          - torch-version: "2.5.1"
-            python-version: "3.9"
-            cuda-version: "12.4.0"
-            cxx11abi: FALSE
           - torch-version: "2.5.1"
             python-version: "3.10"
             cuda-version: "12.1.1"
-            cxx11abi: TRUE
-          - torch-version: "2.5.1"
-            python-version: "3.10"
-            cuda-version: "12.1.1"
-            cxx11abi: FALSE
           - torch-version: "2.5.1"
             python-version: "3.10"
             cuda-version: "12.4.0"
-            cxx11abi: TRUE
-          - torch-version: "2.5.1"
-            python-version: "3.10"
-            cuda-version: "12.4.0"
-            cxx11abi: FALSE
           - torch-version: "2.5.1"
             python-version: "3.11"
             cuda-version: "12.1.1"
-            cxx11abi: TRUE
-          - torch-version: "2.5.1"
-            python-version: "3.11"
-            cuda-version: "12.1.1"
-            cxx11abi: FALSE
           - torch-version: "2.5.1"
             python-version: "3.11"
             cuda-version: "12.4.0"
-            cxx11abi: TRUE
-          - torch-version: "2.5.1"
-            python-version: "3.11"
-            cuda-version: "12.4.0"
-            cxx11abi: FALSE
           - torch-version: "2.5.1"
             python-version: "3.12"
             cuda-version: "12.1.1"
-            cxx11abi: TRUE
-          - torch-version: "2.5.1"
-            python-version: "3.12"
-            cuda-version: "12.1.1"
-            cxx11abi: FALSE
           - torch-version: "2.5.1"
             python-version: "3.12"
             cuda-version: "12.4.0"
-            cxx11abi: TRUE
-          - torch-version: "2.5.1"
-            python-version: "3.12"
-            cuda-version: "12.4.0"
-            cxx11abi: FALSE
           - torch-version: "2.6.0"
             python-version: "3.9"
             cuda-version: "12.4.0"
-            cxx11abi: TRUE
-          - torch-version: "2.6.0"
-            python-version: "3.9"
-            cuda-version: "12.4.0"
-            cxx11abi: FALSE
           - torch-version: "2.6.0"
             python-version: "3.9"
             cuda-version: "12.6.0"
-            cxx11abi: TRUE
           - torch-version: "2.6.0"
+            python-version: "3.10"
+            cuda-version: "12.4.0"
+          - torch-version: "2.6.0"
+            python-version: "3.10"
+            cuda-version: "12.6.0"
+          - torch-version: "2.6.0"
+            python-version: "3.11"
+            cuda-version: "12.4.0"
+          - torch-version: "2.6.0"
+            python-version: "3.11"
+            cuda-version: "12.6.0"
+          - torch-version: "2.6.0"
+            python-version: "3.12"
+            cuda-version: "12.4.0"
+          - torch-version: "2.6.0"
+            python-version: "3.12"
+            cuda-version: "12.6.0"
+          - torch-version: "2.7.0"
             python-version: "3.9"
-            cuda-version: "12.6.0"
-            cxx11abi: FALSE
-          - torch-version: "2.6.0"
+            cuda-version: "12.4.0"
+          - torch-version: "2.7.0"
+            python-version: "3.9"
+            cuda-version: "12.8.0"
+          - torch-version: "2.7.0"
             python-version: "3.10"
             cuda-version: "12.4.0"
-            cxx11abi: TRUE
-          - torch-version: "2.6.0"
+          - torch-version: "2.7.0"
             python-version: "3.10"
-            cuda-version: "12.4.0"
-            cxx11abi: FALSE
-          - torch-version: "2.6.0"
-            python-version: "3.10"
-            cuda-version: "12.6.0"
-            cxx11abi: TRUE
-          - torch-version: "2.6.0"
-            python-version: "3.10"
-            cuda-version: "12.6.0"
-            cxx11abi: FALSE
-          - torch-version: "2.6.0"
+            cuda-version: "12.8.0"
+          - torch-version: "2.7.0"
             python-version: "3.11"
             cuda-version: "12.4.0"
-            cxx11abi: TRUE
-          - torch-version: "2.6.0"
+          - torch-version: "2.7.0"
             python-version: "3.11"
-            cuda-version: "12.4.0"
-            cxx11abi: FALSE
-          - torch-version: "2.6.0"
-            python-version: "3.11"
-            cuda-version: "12.6.0"
-            cxx11abi: TRUE
-          - torch-version: "2.6.0"
-            python-version: "3.11"
-            cuda-version: "12.6.0"
-            cxx11abi: FALSE
-          - torch-version: "2.6.0"
+            cuda-version: "12.8.0"
+          - torch-version: "2.7.0"
             python-version: "3.12"
             cuda-version: "12.4.0"
-            cxx11abi: TRUE
-          - torch-version: "2.6.0"
+          - torch-version: "2.7.0"
             python-version: "3.12"
-            cuda-version: "12.4.0"
-            cxx11abi: FALSE
-          - torch-version: "2.6.0"
-            python-version: "3.12"
-            cuda-version: "12.6.0"
-            cxx11abi: TRUE
-          - torch-version: "2.6.0"
-            python-version: "3.12"
-            cuda-version: "12.6.0"
-            cxx11abi: FALSE
+            cuda-version: "12.8.0"
 
     steps:
       - name: Free Disk Space (Ubuntu)
@@ -261,7 +145,7 @@ jobs:
         with:
           repository: NVIDIA/TransformerEngine
           submodules: recursive
-          ref: v2.0
+          ref: v2.3
 
       - name: Checkout utils
         uses: actions/checkout@v4
@@ -284,8 +168,8 @@ jobs:
 
       - name: Install cibuildwheel
         run: |
-          echo "MANYLINUX_CUDA_VERSION=$(python -c "from os import environ as env; print({'118': '11.8', '121': '12.1', '124': '12.4', '126': '12.6'}[env['MATRIX_CUDA_VERSION']])")" >> $GITHUB_ENV
-          echo "MANYLINUX_NVTX_CUDA_VERSION=$(python -c "from os import environ as env; print({'118': '11-8', '121': '12-1', '124': '12-4', '126': '12-6'}[env['MATRIX_CUDA_VERSION']])")" >> $GITHUB_ENV
+          echo "MANYLINUX_CUDA_VERSION=$(python -c "from os import environ as env; print({'118': '11.8', '121': '12.1', '124': '12.4', '126': '12.6', '128': '12.8'}[env['MATRIX_CUDA_VERSION']])")" >> $GITHUB_ENV
+          echo "MANYLINUX_NVTX_CUDA_VERSION=$(python -c "from os import environ as env; print({'118': '11-8', '121': '12-1', '124': '12-4', '126': '12-6', '128': '12-8'}[env['MATRIX_CUDA_VERSION']])")" >> $GITHUB_ENV
           echo "MANYLINUX_CUDNN_CUDA_VERSION=$(echo ${{ matrix.cuda-version }} | awk -F \. {'print $1'})" >> $GITHUB_ENV
           python3 -m pip install --upgrade pip
           python3 -m pip install cibuildwheel
@@ -298,7 +182,7 @@ jobs:
           CIBW_MANYLINUX_X86_64_IMAGE: pytorch/manylinux2_28-builder:cuda${{ env.MANYLINUX_CUDA_VERSION }}
           CIBW_BEFORE_BUILD_LINUX: >
             bash build_scripts/prepare_for_build.sh
-          CIBW_ENVIRONMENT: CUDA_HOME="/usr/local/cuda-${{ env.MANYLINUX_CUDA_VERSION }}" CUDACXX="/usr/local/cuda-${{ env.MANYLINUX_CUDA_VERSION }}/bin/nvcc" CFLAGS="-I/usr/include" LDFLAGS="-L/usr/lib" NVTE_NO_LOCAL_VERSION=1 AUDITWHEEL_PLAT="manylinux_2_28_$(uname -m)" MATRIX_CUDA_VERSION=${{ env.MATRIX_CUDA_VERSION }} MATRIX_TORCH_VERSION=${{ env.MATRIX_TORCH_VERSION }} MATRIX_PYTHON_VERSION=${{ env.MATRIX_PYTHON_VERSION }} CI_CUDA_VERSION=${{ env.CI_CUDA_VERSION }} CI_TORCH_VERSION=${{ env.CI_TORCH_VERSION }} CI_PYTHON_VERSION=${{ env.CI_PYTHON_VERSION }} CXX11_ABI=${{ matrix.cxx11abi }} NVTE_FRAMEWORK=pytorch MAX_JOBS=1 NVTE_BUILD_THREADS_PER_JOB=1
+          CIBW_ENVIRONMENT: CUDA_HOME="/usr/local/cuda-${{ env.MANYLINUX_CUDA_VERSION }}" CUDACXX="/usr/local/cuda-${{ env.MANYLINUX_CUDA_VERSION }}/bin/nvcc" CFLAGS="-I/usr/include" LDFLAGS="-L/usr/lib" NVTE_NO_LOCAL_VERSION=1 AUDITWHEEL_PLAT="manylinux_2_28_$(uname -m)" MATRIX_CUDA_VERSION=${{ env.MATRIX_CUDA_VERSION }} MATRIX_TORCH_VERSION=${{ env.MATRIX_TORCH_VERSION }} MATRIX_PYTHON_VERSION=${{ env.MATRIX_PYTHON_VERSION }} CI_CUDA_VERSION=${{ env.CI_CUDA_VERSION }} CI_TORCH_VERSION=${{ env.CI_TORCH_VERSION }} CI_PYTHON_VERSION=${{ env.CI_PYTHON_VERSION }} NVTE_FRAMEWORK=pytorch MAX_JOBS=1 NVTE_BUILD_THREADS_PER_JOB=1
           CIBW_SKIP: "*musllinux*"
           CIBW_REPAIR_WHEEL_COMMAND_LINUX: "auditwheel repair -w /tmp/cibuildwheel/repaired_wheel {wheel} --exclude libc10.so --exclude libc10_cuda.so --exclude libtorch.so --exclude libtorch_python.so --exclude libtorch_cpu.so --exclude libtorch_cuda.so --exclude libtorch_cuda_cpp.so --exclude libtorch_cuda_cu.so --exclude libcuda.so.1 --exclude libcufile.so.0 --exclude libcufile.so --exclude libcudart.so.12 --exclude libcudart.so.11.0 --exclude libcudart.so.11 --exclude libnccl.so --exclude libnccl.so.1 --exclude libnccl.so.2 --exclude libcudart.so.11 --exclude libcudart.so.12 --exclude libcudart.so.11.0 --exclude libcudart.so.12.0 --exclude libcurand.so.10 --exclude libcublas.so.12 --exclude libcublasLt.so.12"
 
