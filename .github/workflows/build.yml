@@ -671,7 +671,7 @@ jobs:
       - name: Install cibuildwheel
         run: |
           python3 -m pip install --upgrade pip
-          python3 -m pip install "cibuildwheel<3.0"
+          python3 -m pip install "cibuildwheel"
 
       - name: Build wheels for Pytorch ${{ matrix.torch-version }} + CUDA ${{ matrix.cibw-build-torch-cuda-version }}
         run: |
@@ -693,6 +693,7 @@ jobs:
             NVTE_NO_LOCAL_VERSION=1 
             NVTE_FRAMEWORK=pytorch 
             MAX_JOBS=1
+          CIBW_BUILD_FRONTEND: "pip; args: --no-build-isolation"
           CIBW_SKIP: "*musllinux*"
           CIBW_REPAIR_WHEEL_COMMAND_LINUX: "auditwheel repair -w /tmp/cibuildwheel/repaired_wheel {wheel} --exclude libc10.so --exclude libc10* --exclude libtorch.so --exclude libtorch* --exclude libcu*"
           
